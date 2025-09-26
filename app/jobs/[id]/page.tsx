@@ -1,4 +1,5 @@
 import { JobDetail } from "@/components/job-detail"
+import { getJobs } from "@/lib/jobs-data"
 
 // Placeholder data for job listings (should ideally come from an API or database)
 const jobListings = [
@@ -195,7 +196,8 @@ const jobListings = [
 ]
 
 export default function JobDetailPage({ params }: { params: { id: string } }) {
-  const job = jobListings.find((job) => job.id === params.id)
+  const allJobs = getJobs(60)
+  const job = allJobs.find((j) => j.id === params.id)
 
   if (!job) {
     return <div className="container mx-auto px-4 py-8 text-center text-red-500">Job not found.</div>
